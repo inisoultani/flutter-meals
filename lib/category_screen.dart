@@ -7,7 +7,7 @@ class CategoryScreen extends StatelessWidget {
 
   List<CategoryItem> renderCategoryItems() {
     return DUMMY_CATEGORIES.map((category) =>
-        CategoryItem(title: category.title, color: category.color)).toList();
+        CategoryItem(category: category)).toList();
   }
 
   @override
