@@ -9,9 +9,13 @@ class CategoryItem extends StatelessWidget {
 
   void onTap(BuildContext context) {
     print('category ${this.category.title} tapped');
-    Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-      return CategoryMealScreen(category: this.category);
-    }));
+    // Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+    //   return CategoryMealScreen(category: this.category);
+    // }));
+    Navigator.of(context).pushNamed('/category-meals', arguments: {
+      'id': category.id,
+      'title': category.title,
+    });
   }
 
   @override
