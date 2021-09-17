@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_meals/models/meal.dart';
+import 'package:flutter_meals/screens/meal_detai_screen.dart';
 
 class MealItem extends StatelessWidget {
+  final String id;
   final String title;
   final String imageUrl;
   final int duration;
@@ -10,6 +12,7 @@ class MealItem extends StatelessWidget {
 
   const MealItem(
       {Key? key,
+      required this.id,
       required this.title,
       required this.imageUrl,
       required this.duration,
@@ -17,7 +20,9 @@ class MealItem extends StatelessWidget {
       required this.affordability})
       : super(key: key);
 
-  void selectMeal() {}
+  void selectMeal(BuildContext context) {
+    Navigator.of(context).pushNamed(MealDetailScreen.ROUTE_NAME, arguments: this.id);
+  }
 
   String getComplexityText(Complexity complexity) {
     switch (complexity) {
@@ -50,7 +55,7 @@ class MealItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: this.selectMeal,
+      onTap: () => this.selectMeal(context),
       child: Card(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(15),
@@ -104,21 +109,27 @@ class MealItem extends StatelessWidget {
                   Row(
                     children: [
                       Icon(Icons.schedule),
-                      SizedBox(width: 6,),
+                      SizedBox(
+                        width: 6,
+                      ),
                       Text('${this.duration} min')
                     ],
                   ),
                   Row(
                     children: [
                       Icon(Icons.leaderboard),
-                      SizedBox(width: 6,),
+                      SizedBox(
+                        width: 6,
+                      ),
                       Text('${this.getComplexityText(this.complexity)}')
                     ],
                   ),
                   Row(
                     children: [
                       Icon(Icons.attach_money),
-                      SizedBox(width: 6,),
+                      SizedBox(
+                        width: 6,
+                      ),
                       Text('${this.getAffordabilityText(this.affordability)}')
                     ],
                   )
